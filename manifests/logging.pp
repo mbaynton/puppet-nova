@@ -109,11 +109,11 @@ class nova::logging(
 
   # NOTE(spredzy): In order to keep backward compatibility we rely on the pick function
   # to use nova::<myparam> first then nova::logging::<myparam>.
-  $use_syslog_real = pick($::nova::use_syslog,$use_syslog)
-  $use_stderr_real = pick($::nova::use_stderr,$use_stderr)
-  $log_facility_real = pick($::nova::log_facility,$log_facility)
-  $log_dir_real = pick($::nova::log_dir,$log_dir)
-  $debug_real = pick($::nova::debug,$debug)
+  $use_syslog_real = pick(getvar('nova::use_syslog'),$use_syslog)
+  $use_stderr_real = pick(getvar('nova::use_stderr'),$use_stderr)
+  $log_facility_real = pick(getvar('nova::log_facility'),$log_facility)
+  $log_dir_real = pick(getvar('nova::log_dir'),$log_dir)
+  $debug_real = pick(getvar('nova::debug'),$debug)
 
   if $log_dir_real != $::os_service_default {
     # TODO: can probably remove this in Rocky once we've had it for 1 upgrade cycle

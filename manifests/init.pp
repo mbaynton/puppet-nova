@@ -653,11 +653,11 @@ but should be one of: ssh-rsa, ssh-dsa, ssh-ecdsa.")
   }
 
   # maintain backwards compatibility
-  $real_cpu_allocation_ratio = pick($::nova::scheduler::filter::cpu_allocation_ratio, $cpu_allocation_ratio)
+  $real_cpu_allocation_ratio = pick(getvar('nova::scheduler::filter::cpu_allocation_ratio'), $cpu_allocation_ratio)
   ensure_resource('nova_config', 'DEFAULT/cpu_allocation_ratio', { value => $real_cpu_allocation_ratio })
-  $real_ram_allocation_ratio = pick($::nova::scheduler::filter::ram_allocation_ratio, $ram_allocation_ratio)
+  $real_ram_allocation_ratio = pick(getvar('nova::scheduler::filter::ram_allocation_ratio'), $ram_allocation_ratio)
   ensure_resource('nova_config', 'DEFAULT/ram_allocation_ratio', { value => $real_ram_allocation_ratio })
-  $real_disk_allocation_ratio = pick($::nova::scheduler::filter::disk_allocation_ratio, $disk_allocation_ratio)
+  $real_disk_allocation_ratio = pick(getvar('nova::scheduler::filter::disk_allocation_ratio'), $disk_allocation_ratio)
   ensure_resource('nova_config', 'DEFAULT/disk_allocation_ratio', { value => $real_disk_allocation_ratio })
 
   nova_config {

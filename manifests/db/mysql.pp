@@ -50,7 +50,7 @@ class nova::db::mysql(
 
   include ::nova::deps
 
-  $setup_cell0_real = pick($::nova::db::mysql_api::setup_cell0, $setup_cell0)
+  $setup_cell0_real = pick(getvar('nova::db::mysql_api::setup_cell0'), $setup_cell0)
 
   ::openstacklib::db::mysql { 'nova':
     user          => $user,
