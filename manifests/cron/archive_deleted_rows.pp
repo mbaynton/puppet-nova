@@ -71,6 +71,8 @@ class nova::cron::archive_deleted_rows (
 
   if $until_complete {
     $until_complete_real = '--until-complete'
+  } else {
+    $until_complete_real = ''
   }
 
   cron { 'nova-manage db archive_deleted_rows':
